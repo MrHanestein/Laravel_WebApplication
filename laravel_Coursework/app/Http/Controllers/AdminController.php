@@ -46,7 +46,7 @@ class AdminController extends Controller
         {
             $imagename=time().'.'.$image->getClientOriginalExtension();
 
-            $request->image->move    ('  postimage',$imagename);
+            $request->image->move('postimage',$imagename);
 
             $post->image = $imagename;
         }
@@ -55,4 +55,9 @@ class AdminController extends Controller
 
         return redirect()->back()->with('message','Post Added Successfully');
     }
+     public function show_post()
+     {
+         $post = Post::all();
+         return view('admin.show_post',compact('post'));
+     }
 }
