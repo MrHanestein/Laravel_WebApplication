@@ -37,7 +37,7 @@
 @include('admin.sidebar')
     <div class="page-content">
         @if(session()->has('message'))
-            <div class="alert alert-danger">
+            <div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
                 {{session()->get('message')}}
             </div>
@@ -52,7 +52,8 @@
                 <th>UserType</th>
                 <th>Image</th>
                 <th>Delete</th>
-            </tr>
+                <th>Edit</th>
+            </tr>=-890-90-
             @foreach($post as $post)
             <tr>
                 <td>{{$post->title}}</td>
@@ -65,6 +66,9 @@
                 </td>
                 <td>
                     <a href="{{url('delete_post',$post->id)}}" class="btn btn-danger" onclick="confirmation(event)">Delete</a>
+                </td>
+                <td>
+                    <a href="{{url('edit_page',$post->id)}}" class="btn btn-success">Edit</a>
                 </td>
             </tr>
             @endforeach
