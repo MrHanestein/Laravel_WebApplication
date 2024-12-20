@@ -45,6 +45,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/mark_all_notifications_as_read', [HomeController::class, 'markAllNotificationsAsRead'])->name('mark_all_notifications_as_read');
 });
 
+Route::post('/notifications/mark-all-read', [HomeController::class, 'markAllNotificationsAsRead'])->name('notifications.markAllRead');
+
+
 // Dashboard Route (Protected by 'auth' and 'verified' middleware)
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -54,3 +57,7 @@ Route::get('/dashboard', function () {
 Route::get('/post_details/{id}', [HomeController::class, 'post_details'])->name('post_details');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+// testing
+

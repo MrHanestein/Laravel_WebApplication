@@ -59,6 +59,27 @@ class CommentController extends Controller
         // Return the edit view with the comment data
         return view('home.edit_comment', compact('comment'));
     }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'post_id' => 'required|exists:posts,id',
+            'comment_text' => 'required|string|max:1000',
+        ]);
+
+        $user = Auth::user();
+        if (!$user) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        // Create the comment
+        $comment = new Comment();
+        $comment->post_id = $request->post_id;
+        $comment->user_id = $user->id;
+        $comment->comment_text = $request->comment_text;
+        $comment->save();
+
+        return response()->json(['message' => 'Comment added successfully', 'comment' => $comment], 201);
+    }
 
 }
 

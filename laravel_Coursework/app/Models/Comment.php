@@ -3,24 +3,36 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Like;
+use App\Models\User;
+use App\Models\Post;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Comment extends Model
 {
-    protected $fillable = [
-        'post_id',
-        'user_id',
-        'comment_text',
-    ];
+    protected $fillable = ['comment_text', 'user_id', 'post_id'];
 
-    public function post(): BelongsTo
+    /**
+     * Get all of the comment's likes.
+     */
+    public function likes(): MorphMany
     {
-        return $this->belongsTo(Post::class);
+        return $this->morphMany(Like::class, 'likeable');
     }
 
-    public function user(): BelongsTo
+    /**
+     * Get the user that owns the comment.
+     */
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Get the post that the comment belongs to.
+     */
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }

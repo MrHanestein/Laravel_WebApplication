@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="about_taital_main">
-                    <h1 class="about_taital">About Us</h1>
-                    <p class="about_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All </p>
+                    <h1 class="about_taital">About My Blog</h1>
+                    <p class="about_text">Welcome to my blog! Here, Users can come together to share their personal journey through life experiences and their explorations. I aim to provide a very just environment for you and I. This app has a lot of potential and it would be my pleasure for you all to join me on this journey. AUTHOR: David Anthony </p>
                     <div class="readmore_bt"><a href="#">Read More</a></div>
                 </div>
             </div>

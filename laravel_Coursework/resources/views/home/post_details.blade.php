@@ -133,5 +133,33 @@
         });
     });
 </script>
+<script>
+    document.getElementById('commentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+
+        fetch("{{ route('comments.store') }}", {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+            },
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    const commentSection = document.getElementById('comments');
+                    const newComment = `<p><strong>{{ auth()->user()->name }}</strong>: ${formData.get('comment_text')}</p>`;
+                    commentSection.innerHTML += newComment;
+                    document.querySelector('textarea[name="comment_text"]').value = '';
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
+</script>
+
 </body>
 </html>

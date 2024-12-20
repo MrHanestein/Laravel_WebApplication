@@ -113,5 +113,4 @@ class HomeController extends Controller
         return view('home.user_profile', compact('user'));
     }
 
-    // Additional methods for notifications can be added here
 }
