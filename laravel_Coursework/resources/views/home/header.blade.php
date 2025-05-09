@@ -41,6 +41,7 @@
                          <li>  <x-app-layout>
                             </x-app-layout>
                          </li>
+                            <li><a href="{{url('my post')}}">My Post</a> ref</li>
                         @else
                     <li><a href="{{route('login')}}">Login Here</a></li>
                     <li><a href="{{route('register')}}">Register Here</a></li>

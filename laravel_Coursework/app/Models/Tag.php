@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Post;
 use App\Models\Comment;
 
+
 class Tag extends Model
 {
     use HasFactory;

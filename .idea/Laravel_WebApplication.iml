@@ -133,6 +133,7 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel_Coursework/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_Coursework/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_Coursework/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_Coursework/vendor/realrashid/sweet-alert" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

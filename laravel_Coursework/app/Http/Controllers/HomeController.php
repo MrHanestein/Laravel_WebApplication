@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -83,6 +84,8 @@ class HomeController extends Controller
 
         $post->save();
 
+        Alert::success('Post Created Successfully', 'Congratulations');
+
         return redirect()->back()->with('message', 'Post Added Successfully');
     }
 
@@ -112,5 +115,15 @@ class HomeController extends Controller
 
         return view('home.user_profile', compact('user'));
     }
-
+    public function my_post()
+    {
+        return view('home.my_post');
+    }
+    public function markAllNotificationsAsRead()
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('login')->with('message', 'Please log in to view notifications.');
+        }
+    }
 }

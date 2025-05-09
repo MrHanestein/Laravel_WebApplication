@@ -80,6 +80,14 @@ class CommentController extends Controller
 
         return response()->json(['message' => 'Comment added successfully', 'comment' => $comment], 201);
     }
+    public function destroy($id)
+    {
+        // Logic for deleting the comment
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'Comment deleted successfully.');
+    }
 
 }
 

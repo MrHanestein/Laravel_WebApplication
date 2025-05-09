@@ -6,7 +6,7 @@
 </head>
 <body>
 <header>
-    @include('home.header')
+
 </header>
 
 <main role="main" class="p-6">
@@ -26,7 +26,6 @@
     </form>
 </main>
 
-@include('home.footer')
 </body>
 <!-- resources/views/home/notifications.blade.php -->
 

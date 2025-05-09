@@ -33,4 +33,5 @@ class NewLikeNotification extends Notification
             'message' => "{$this->likerName} liked {$this->itemDescription}",
         ];
     }
+
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
 <header>
-    @include('home.header')
+
 </header>
 
 <main role="main" class="p-6">
@@ -65,7 +65,16 @@
                         <a href="{{ route('edit_page', $post->id) }}" class="underline text-blue-600">Edit Post</a>
                     @endcan
                     @can('delete', $post)
-                        <a href="{{ route('delete_post', $post->id) }}" class="underline text-red-600">Delete Post</a>
+                        <form action="{{ route('delete_post', $post) }}"
+                              method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Delete this post?')">
+                                Delete
+                            </button>
+                        </form>
+
                     @endcan
 
                     <h4 class="mt-4 font-semibold">Comments</h4>
@@ -85,7 +94,13 @@
                                 <a href="{{ route('comments.edit', $comment->id) }}" class="underline text-blue-600">Edit</a>
                             @endcan
                             @can('delete', $comment)
-                                <a href="{{ route('comments.delete', $comment->id) }}" class="underline text-red-600">Delete</a>
+                                <form action="{{ route('comments.delete', $comment) }}"
+                                      method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Delete</button>
+                                </form>
+
                             @endcan
                         </div>
                     @endforeach
@@ -99,7 +114,6 @@
     @endisset
 </main>
 
-@include('home.footer')
 
 <!-- Include jQuery and AJAX scripts for liking -->
 <script src="/admincss/vendor/jquery/jquery.min.js"></script>

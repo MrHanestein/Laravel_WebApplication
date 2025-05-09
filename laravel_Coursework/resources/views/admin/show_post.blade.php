@@ -65,7 +65,17 @@
                     <img class="img_deg" src="postimage/{{$post->image}}">
                 </td>
                 <td>
-                    <a href="{{url('delete_post',$post->id)}}" class="btn btn-danger" onclick="confirmation(event)">Delete</a>
+                    <form action="{{ route('delete_post', $post) }}"
+                          method="POST"
+                          class="d-inline">
+                        @csrf
+                        @method('DELETE')   {{-- Tell Laravel to treat it as DELETE --}}
+                        <button class="btn btn-danger btn-sm"
+                                onclick="return confirm('Delete this post?')">
+                            Delete
+                        </button>
+                    </form>
+
                 </td>
                 <td>
                     <a href="{{url('edit_page',$post->id)}}" class="btn btn-success">Edit</a>

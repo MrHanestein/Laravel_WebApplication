@@ -5,22 +5,22 @@
             <div class="carousel-item active">
                 <div class="container">
                     <h1 class="banner_taital">Adventure</h1>
-                    <p class="banner_text">There are many variations of passages of Lorem Ipsum available, but the majority have sufferedThere are ma available, but the majority have suffered</p>
-                    <div class="read_bt"><a href="#">Get A Quote</a></div>
+                    <p class="banner_text">his is the first banner placeholder, a proceeding placeholder would be pasted here </p>
+                    <div class="read_bt"><a href="#">Welcome to this amazing experience </a></div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <h1 class="banner_taital">`Banner place holder`</h1>
+                    <p class="banner_text">This is the first banner placeholder, a proceeding placeholder would be pasted here </p>
+                    <div class="read_bt"><a href="#">Get ready for the A-World Blog Website</a></div>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="container">
                     <h1 class="banner_taital">Adventure</h1>
-                    <p class="banner_text">There are many variations of passages of Lorem Ipsum available, but the majority have sufferedThere are ma available, but the majority have suffered</p>
-                    <div class="read_bt"><a href="#">Get A Quote</a></div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <h1 class="banner_taital">Adventure</h1>
-                    <p class="banner_text">There are many variations of passages of Lorem Ipsum available, but the majority have sufferedThere are ma available, but the majority have suffered</p>
-                    <div class="read_bt"><a href="#">Get A Quote</a></div>
+                    <p class="banner_text">his is the first banner placeholder, a proceeding placeholder would be pasted here </p>
+                    <div class="read_bt"><a href="#">Ensure to keep it family friendly everyone </a></div>
                 </div>
             </div>
         </div>

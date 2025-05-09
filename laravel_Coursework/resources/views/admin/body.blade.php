@@ -1,7 +1,7 @@
 <div class="page-content">
     <div class="page-header">
         <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Dashboard</h2>
+            <h2 class="h5 no-margin-bottom">Dashboard Here</h2>
         </div>
     </div>
     <section class="no-padding-top no-padding-bottom">
@@ -11,7 +11,7 @@
                     <div class="statistic-block block">
                         <div class="progress-details d-flex align-items-end justify-content-between">
                             <div class="title">
-                                <div class="icon"><i class="icon-user-1"></i></div><strong>New Clients</strong>
+                                <div class="icon"><i class="icon-user-1"></i></div><strong>New Blog Clients</strong>
                             </div>
                             <div class="number dashtext-1">27</div>
                         </div>
@@ -24,7 +24,7 @@
                     <div class="statistic-block block">
                         <div class="progress-details d-flex align-items-end justify-content-between">
                             <div class="title">
-                                <div class="icon"><i class="icon-contract"></i></div><strong>New Projects</strong>
+                                <div class="icon"><i class="icon-contract"></i></div><strong>New Projects to grow</strong>
                             </div>
                             <div class="number dashtext-2">375</div>
                         </div>
@@ -37,7 +37,7 @@
                     <div class="statistic-block block">
                         <div class="progress-details d-flex align-items-end justify-content-between">
                             <div class="title">
-                                <div class="icon"><i class="icon-paper-and-pencil"></i></div><strong>New Invoices</strong>
+                                <div class="icon"><i class="icon-paper-and-pencil"></i></div><strong>New Join Invoices</strong>
                             </div>
                             <div class="number dashtext-3">140</div>
                         </div>
@@ -110,10 +110,10 @@
                             </div>
                         </div>
                         <div class="stats-3 d-flex justify-content-between text-center">
-                            <div class="item"><strong class="d-block strong-sm">4.124</strong><span class="d-block span-sm">Threats</span>
+                            <div class="item"><strong class="d-block strong-sm">4.124</strong><span class="d-block span-sm">Threat user analysis</span>
                                 <div class="line"></div><small>+246</small>
                             </div>
-                            <div class="item"><strong class="d-block strong-sm">2.147</strong><span class="d-block span-sm">Neutral</span>
+                            <div class="item"><strong class="d-block strong-sm">2.147</strong><span class="d-block span-sm">Neutral user Analysis</span>
                                 <div class="line"></div><small>+416</small>
                             </div>
                         </div>
@@ -135,8 +135,8 @@
                         <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid">
                             <div class="order dashbg-2">1st</div>
                         </div><a href="#" class="user-title">
-                            <h3 class="h5">Richard Nevoreski</h3><span>@richardnevo</span></a>
-                        <div class="contributions">950 Contributions</div>
+                            <h3 class="h5">Naruto Uzumaki</h3><span>@richardnevo</span></a>
+                        <div class="contributions">35 Contributions</div>
                         <div class="details d-flex">
                             <div class="item"><i class="icon-info"></i><strong>150</strong></div>
                             <div class="item"><i class="fa fa-gg"></i><strong>340</strong></div>
@@ -149,8 +149,8 @@
                         <div class="avatar"><img src="img/avatar-4.jpg" alt="..." class="img-fluid">
                             <div class="order dashbg-1">2nd</div>
                         </div><a href="#" class="user-title">
-                            <h3 class="h5">Samuel Watson</h3><span>@samwatson</span></a>
-                        <div class="contributions">772 Contributions</div>
+                            <h3 class="h5">Samuel L.Jackson</h3><span>@samwatson</span></a>
+                        <div class="contributions">6 Contributions</div>
                         <div class="details d-flex">
                             <div class="item"><i class="icon-info"></i><strong>80</strong></div>
                             <div class="item"><i class="fa fa-gg"></i><strong>420</strong></div>
@@ -163,8 +163,8 @@
                         <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid">
                             <div class="order dashbg-4">3rd</div>
                         </div><a href="#" class="user-title">
-                            <h3 class="h5">Sebastian Wood</h3><span>@sebastian</span></a>
-                        <div class="contributions">620 Contributions</div>
+                            <h3 class="h5">Clark Kent</h3><span>@sebastian</span></a>
+                        <div class="contributions">45 Contributions</div>
                         <div class="details d-flex">
                             <div class="item"><i class="icon-info"></i><strong>150</strong></div>
                             <div class="item"><i class="fa fa-gg"></i><strong>280</strong></div>
@@ -285,7 +285,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="checklist-block block">
-                        <div class="title"><strong>To Do List</strong></div>
+                        <div class="title"><strong>Blog List</strong></div>
                         <div class="checklist">
                             <div class="item d-flex align-items-center">
                                 <input type="checkbox" id="input-1" name="input-1" class="checkbox-template">

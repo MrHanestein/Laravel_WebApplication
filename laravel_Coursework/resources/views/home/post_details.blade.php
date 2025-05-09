@@ -12,17 +12,36 @@
 
 <main style="text-align:center;" class="col-md-13">
     <div>
-        <img style="padding: 20px; margin-bottom: 20px; height: 200px; width:350px;"
-             src="/postimage/{{$post->image}}"
-             alt="Image for post titled {{$post->title}}">
+        <img  src="/postimage/{{ $post->image }}"
+              alt="Image for post titled {{ $post->title }}"
+              style="padding:20px;margin-bottom:20px;height:200px;width:350px;">
     </div>
+
     <h1>{{ $post->title }}</h1>
     <p>Posted By <b>{{ $post->name }}</b></p>
     <p>{{ $post->description }}</p>
 
+    {{-- optional delete for post owner / admin --}}
+    @can('delete', $post)
+        <form action="{{ route('delete_post', $post) }}"
+              method="POST"
+              class="d-inline">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger btn-sm"
+                    onclick="return confirm('Delete this post?')">
+                Delete Post
+            </button>
+        </form>
+    @endcan
+
     @auth
         <!-- Like button for post -->
-        <button type="button" id="like-post" data-id="{{$post->id}}" data-type="post" aria-label="Like this post">
+        <button  type="button"
+                 id="like-post"
+                 data-id="{{ $post->id }}"
+                 data-type="post"
+                 aria-label="Like this post">
             Like Post
         </button>
     @endauth
@@ -34,28 +53,46 @@
 
 <div class="container" style="margin-top:20px;">
     <h2>Comments</h2>
+
     <div id="comments-list" aria-live="polite">
-        @foreach($post->comments as $comment)
-            <div style="border-bottom:1px solid #ddd; margin-bottom:10px; padding-bottom:10px;">
-                <strong>{{ $comment->user->name }}</strong> -
+        @foreach ($post->comments as $comment)
+            <div style="border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">
+                <strong>{{ $comment->user->name }}</strong> –
                 <small>{{ $comment->created_at->diffForHumans() }}</small>
                 <p>{{ $comment->comment_text }}</p>
 
                 @auth
                     <!-- Like button for each comment -->
-                    <button type="button" class="like-comment" data-id="{{$comment->id}}" data-type="comment" aria-label="Like this comment">
+                    <button  type="button"
+                             class="like-comment"
+                             data-id="{{ $comment->id }}"
+                             data-type="comment"
+                             aria-label="Like this comment">
                         Like Comment
                     </button>
 
-                    @@can('update', $comment)
-                        <button class="edit-comment-btn" data-id="{{$comment->id}}" data-text="{{$comment->comment_text}}" aria-label="Edit Comment">Edit</button>
+                    @can('update', $comment)
+                        <button class="edit-comment-btn"
+                                data-id="{{ $comment->id }}"
+                                data-text="{{ $comment->comment_text }}"
+                                aria-label="Edit Comment">
+                            Edit
+                        </button>
                     @endcan
+
                     @can('delete', $comment)
-                        <form style="display:inline;" method="POST" action="{{route('comments.delete', $comment->id)}}">
+                        <form  action="{{ route('comments.delete', $comment) }}"
+                               method="POST"
+                               style="display:inline;">
                             @csrf
-                            <button type="submit" aria-label="Delete Comment">Delete</button>
+                            @method('DELETE')   {{-- <-- verb spoof - FIXED --}}
+                            <button type="submit"
+                                    aria-label="Delete Comment">
+                                Delete
+                            </button>
                         </form>
                     @endcan
+                @endauth
             </div>
         @endforeach
     </div>
@@ -65,10 +102,17 @@
         <form id="comment-form" aria-label="Add a new comment form">
             @csrf
             <input type="hidden" name="post_id" value="{{ $post->id }}">
+
             <label for="comment_text">Your comment</label><br>
-            <textarea name="comment_text" id="comment_text" rows="3" style="width:100%;" required></textarea>
-            <br><br>
-            <button type="submit" style="padding:10px 20px; background:blue; color:#fff; border:none; cursor:pointer;" aria-label="Submit Comment">
+            <textarea  name="comment_text"
+                       id="comment_text"
+                       rows="3"
+                       style="width:100%;"
+                       required></textarea><br><br>
+
+            <button type="submit"
+                    style="padding:10px 20px;background:blue;color:#fff;border:none;cursor:pointer;"
+                    aria-label="Submit Comment">
                 Submit Comment
             </button>
         </form>
@@ -77,87 +121,57 @@
     @endauth
 </div>
 
+{{-- ---------------------------------------------------------------- --}}
+{{--  Scripts                                                        --}}
+{{-- ---------------------------------------------------------------- --}}
 <script src="/admincss/vendor/jquery/jquery.min.js"></script>
+
 <script>
-    $(document).ready(function() {
-        $('#comment-form').on('submit', function(e) {
+    /* ---------- jQuery version (AJAX) ---------- */
+    $(function () {
+
+        /* add comment */
+        $('#comment-form').on('submit', function (e) {
             e.preventDefault();
+
             $.ajax({
-                url: "{{ route('comments.store') }}",
-                method: "POST",
+                url:  "{{ route('comments.store') }}",
+                type: "POST",
                 data: new FormData(this),
                 processData: false,
                 contentType: false,
-                success: function(response) {
-                    let commentHtml = '<div style="border-bottom:1px solid #ddd; margin-bottom:10px; padding-bottom:10px;">'
-                        + '<strong>' + response.user_name + '</strong> - <small>' + response.created_at + '</small>'
-                        + '<p>' + response.comment_text + '</p>'
-                        + '</div>';
-                    $('#comments-list').prepend(commentHtml);
+
+                success: function (res) {
+                    const html =
+                        `<div style="border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">
+                       <strong>${res.user_name}</strong> –
+                       <small>${res.created_at}</small>
+                       <p>${res.comment_text}</p>
+                   </div>`;
+                    $('#comments-list').prepend(html);
                     $('#comment_text').val('');
                 },
-                error: function() {
-                    alert("Could not add comment. Please try again.");
-                }
+                error: () => alert('Could not add comment. Please try again.')
             });
         });
 
-        $('#like-post').on('click', function() {
-            $.ajax({
-                url: "{{ route('like') }}",
-                method: "POST",
-                data: {
-                    _token: "{{csrf_token()}}",
-                    type: 'post',
-                    id: $(this).data('id')
-                },
-                success: function(response) {
-                    alert(response.message);
-                }
-            });
+        /* like post */
+        $('#like-post').on('click', function () {
+            $.post("{{ route('like') }}", {
+                _token : "{{ csrf_token() }}",
+                type   : 'post',
+                id     : $(this).data('id')
+            }, res => alert(res.message));
         });
 
-        $('.like-comment').on('click', function() {
-            $.ajax({
-                url: "{{ route('like') }}",
-                method: "POST",
-                data: {
-                    _token: "{{csrf_token()}}",
-                    type: 'comment',
-                    id: $(this).data('id')
-                },
-                success: function(response) {
-                    alert(response.message);
-                }
-            });
+        /* like comment */
+        $('.like-comment').on('click', function () {
+            $.post("{{ route('like') }}", {
+                _token : "{{ csrf_token() }}",
+                type   : 'comment',
+                id     : $(this).data('id')
+            }, res => alert(res.message));
         });
-    });
-</script>
-<script>
-    document.getElementById('commentForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        let formData = new FormData(this);
-
-        fetch("{{ route('comments.store') }}", {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
-            },
-            body: formData,
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    alert(data.error);
-                } else {
-                    const commentSection = document.getElementById('comments');
-                    const newComment = `<p><strong>{{ auth()->user()->name }}</strong>: ${formData.get('comment_text')}</p>`;
-                    commentSection.innerHTML += newComment;
-                    document.querySelector('textarea[name="comment_text"]').value = '';
-                    alert(data.message);
-                }
-            })
-            .catch(error => console.error('Error:', error));
     });
 </script>
 

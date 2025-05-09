@@ -41,6 +41,7 @@ class LikeController extends Controller
 
         // Check if already liked
         if ($item->likes()->where('user_id', $user->id)->exists()) {
+            return view('home.like_comment');
             return response()->json(['message' => 'Already liked'], 200);
         }
 
